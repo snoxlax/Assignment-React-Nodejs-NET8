@@ -8,7 +8,6 @@ import {
   updateUserDetails,
   submitOrder,
   clearSubmitStatus,
-  UserDetails,
 } from "@/store/orderSlice";
 import { clearSelectedProducts, removeProduct } from "@/store/productSlice";
 import { Button } from "@/components/ui/button";
