@@ -1,0 +1,6 @@
+@ProductAPI_HostAddress = http://localhost:5039
+
+GET {{ProductAPI_HostAddress}}/api/categories
+Accept: application/json
+
+###
