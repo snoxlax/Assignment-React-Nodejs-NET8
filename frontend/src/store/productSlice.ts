@@ -54,34 +54,34 @@ export const fetchCategories = createAsyncThunk(
 );
 
 // Async thunk to fetch all products (flattened from categories)
-export const fetchAllProducts = createAsyncThunk(
-  "products/fetchAllProducts",
-  async () => {
-    try {
-      const response = await categoryAPI.getAllProducts();
-      return response;
-    } catch (error: any) {
-      throw new Error(
-        error.response?.data?.message || "Failed to fetch products",
-      );
-    }
-  },
-);
+// export const fetchAllProducts = createAsyncThunk(
+//   "products/fetchAllProducts",
+//   async () => {
+//     try {
+//       const response = await categoryAPI.getAllProducts();
+//       return response;
+//     } catch (error: any) {
+//       throw new Error(
+//         error.response?.data?.message || "Failed to fetch products",
+//       );
+//     }
+//   },
+// );
 
 // Async thunk to fetch products by category
-export const fetchProductsByCategory = createAsyncThunk(
-  "products/fetchProductsByCategory",
-  async (categoryId: string) => {
-    try {
-      const response = await categoryAPI.getProductsByCategory(categoryId);
-      return response;
-    } catch (error: any) {
-      throw new Error(
-        error.response?.data?.message || "Failed to fetch products by category",
-      );
-    }
-  },
-);
+// export const fetchProductsByCategory = createAsyncThunk(
+//   "products/fetchProductsByCategory",
+//   async (categoryId: string) => {
+//     try {
+//       const response = await categoryAPI.getProductsByCategory(categoryId);
+//       return response;
+//     } catch (error: any) {
+//       throw new Error(
+//         error.response?.data?.message || "Failed to fetch products by category",
+//       );
+//     }
+//   },
+// );
 
 const productSlice = createSlice({
   name: "products",
@@ -164,44 +164,44 @@ const productSlice = createSlice({
       });
 
     // Handle fetchAllProducts
-    builder
-      .addCase(fetchAllProducts.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.availableProducts = action.payload;
-      })
-      .addCase(fetchAllProducts.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || "Failed to fetch products";
-      });
+    // builder
+    //   .addCase(fetchAllProducts.pending, (state) => {
+    //     state.isLoading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(fetchAllProducts.fulfilled, (state, action) => {
+    //     state.isLoading = false;
+    //     state.availableProducts = action.payload;
+    //   })
+    //   .addCase(fetchAllProducts.rejected, (state, action) => {
+    //     state.isLoading = false;
+    //     state.error = action.error.message || "Failed to fetch products";
+    //   });
 
     // Handle fetchProductsByCategory
-    builder
-      .addCase(fetchProductsByCategory.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
-        state.isLoading = false;
-        // Merge new products with existing ones, avoiding duplicates
-        const newProducts = action.payload;
-        const existingIds = state.availableProducts.map((p) => p.id);
-        const uniqueNewProducts = newProducts.filter(
-          (p) => !existingIds.includes(p.id),
-        );
-        state.availableProducts = [
-          ...state.availableProducts,
-          ...uniqueNewProducts,
-        ];
-      })
-      .addCase(fetchProductsByCategory.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error =
-          action.error.message || "Failed to fetch products by category";
-      });
+    // builder
+    //   .addCase(fetchProductsByCategory.pending, (state) => {
+    //     state.isLoading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+    //     state.isLoading = false;
+    //     // Merge new products with existing ones, avoiding duplicates
+    //     const newProducts = action.payload;
+    //     const existingIds = state.availableProducts.map((p) => p.id);
+    //     const uniqueNewProducts = newProducts.filter(
+    //       (p) => !existingIds.includes(p.id),
+    //     );
+    //     state.availableProducts = [
+    //       ...state.availableProducts,
+    //       ...uniqueNewProducts,
+    //     ];
+    //   })
+    //   .addCase(fetchProductsByCategory.rejected, (state, action) => {
+    //     state.isLoading = false;
+    //     state.error =
+    //       action.error.message || "Failed to fetch products by category";
+    //   });
   },
 });
 

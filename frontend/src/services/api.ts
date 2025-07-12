@@ -55,10 +55,10 @@ export const categoryAPI = {
   },
 
   // Get products by category (if needed)
-  getProductsByCategory: async (categoryId: string) => {
-    const response = await dotnetApi.get(`/categories/${categoryId}/products`);
-    return response.data;
-  },
+  // getProductsByCategory: async (categoryId: string) => {
+  //   const response = await dotnetApi.get(`/categories/${categoryId}/products`);
+  //   return response.data;
+  // },
 
   // Get all products by flattening categories data
   getAllProducts: async () => {
